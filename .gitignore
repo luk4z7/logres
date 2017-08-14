@@ -1,0 +1,16 @@
+/bin
+/pkg
+/.tmp
+/src/vendor
+/src/github.com/
+/src/golang.org/
+src/gopkg.in/
+/src/sourcegraph.com/
+.idea/
+.vscode/
+.DS_Store
+vendor/
+.build
+*.swp
+*.log
+*.csv

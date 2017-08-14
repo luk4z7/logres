@@ -1,0 +1,23 @@
+hash: a7afcad401002904542b6e5cff9facf1e37a31ec0d0be7a851829483b168b953
+updated: 2017-08-12T17:33:03.127617565-03:00
+imports:
+- name: github.com/agtorre/gocolorize
+  version: 99fea4bc9517f07eea8194702cb7076f4845b7de
+- name: github.com/fatih/structs
+  version: 7e5a8eef611ee84dd359503f3969f80df4c50723
+- name: github.com/fsnotify/fsnotify
+  version: 4da3e2cfbabc9f751898f250b49f2439785783a1
+- name: golang.org/x/sys
+  version: e42485b6e20ae7d2304ec72e535b103ed350cc02
+  subpackages:
+  - unix
+- name: gopkg.in/mgo.v2
+  version: 3f83fa5005286a7fe593b055f0d7771a7dce4655
+  subpackages:
+  - bson
+  - internal/sasl
+  - internal/scram
+  - internal/json
+- name: gopkg.in/yaml.v2
+  version: eb3733d160e74a9c7e442f435eb3bea458e1d19f
+testImports: []
