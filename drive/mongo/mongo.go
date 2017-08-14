@@ -10,10 +10,10 @@ package mongo
 
 import (
 	"gopkg.in/mgo.v2"
-	"logres/service/model"
 	"os"
 	"fmt"
-	"logres/service/config"
+	"github.com/luk4z7/logres/service/config"
+	"github.com/luk4z7/logres/service/model"
 )
 
 const (

@@ -11,7 +11,7 @@ package logger
 import (
 	"gopkg.in/mgo.v2/bson"
 	"gopkg.in/mgo.v2"
-	"logres/service/model"
+	"github.com/luk4z7/logres/service/model"
 )
 
 func Persist(session *mgo.Collection, register model.LoggerPostgreSQL) error {

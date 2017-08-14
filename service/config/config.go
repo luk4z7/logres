@@ -20,10 +20,10 @@ import (
 	"strconv"
 	"encoding/csv"
 	"reflect"
-	"logres/service/model"
+	"github.com/luk4z7/logres/service/model"
 	"github.com/fatih/structs"
-	liberr "logres/lib/error"
-	"logres/lib/standard"
+	liberr "github.com/luk4z7/logres/lib/error"
+	"github.com/luk4z7/logres/lib/standard"
 )
 
 const (
