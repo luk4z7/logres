@@ -10,6 +10,7 @@ package standard
 
 import "os/user"
 
+// InArray check if exist val in array
 func InArray(val string, array []string) (exists bool, index int) {
 	exists = false
 	index = -1
@@ -23,6 +24,7 @@ func InArray(val string, array []string) (exists bool, index int) {
 	return
 }
 
+// GetCurrentUser return current user
 func GetCurrentUser() (string, error) {
 	u, err := user.Current()
 	if err != nil {
@@ -31,6 +33,7 @@ func GetCurrentUser() (string, error) {
 	return u.Username, err
 }
 
+// IsAlpha check if is character is alpha
 func IsAlpha(r string) bool {
 	str := []rune(r)
 	if len(str) < 1 {
