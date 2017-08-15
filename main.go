@@ -38,6 +38,8 @@ var (
 	filename    string
 )
 
+// Store store file transactions and mutex for operatiosn on various
+// goroutines
 type Store struct {
 	File        string
 	Transaction []string

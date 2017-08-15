@@ -5,7 +5,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// drive
+// mongo
 package mongo
 
 import (
@@ -16,14 +16,16 @@ import (
 )
 
 const (
-	PRODUCTION = "production"
-	LOCALHOST  = "localhost"
+	PRODUCTION = "production" // const for operations on production servers
+	LOCALHOST  = "localhost"  // const for operations on locally servers
 )
 
+// New return two instances of different connections
 func New() (*mgo.Collection, *mgo.Collection) {
 	return GetSession(LOCALHOST, "logger"), GetSession(PRODUCTION, "logger")
 }
 
+// session return mgo.Session using for operations on mongodb database
 func session(connection string) (configData model.Config, localhost *mgo.Session, production *mgo.Session) {
 	configData = config.GetConfig()
 	if len(os.Args) > 1 && os.Args[1] == "--run" {

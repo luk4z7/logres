@@ -5,7 +5,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// lib
+// error
 package error
 
 import (
@@ -13,18 +13,21 @@ import (
 	"runtime"
 )
 
+// ErrorsAPI
 type ErrorsAPI struct {
 	Errors []Errors `json:"errors"`
 	Url    string   `json:"url"`
 	Method string   `json:"method"`
 }
 
+// Errors
 type Errors struct {
 	ParameterName string `json:"parameter_name"`
 	Type          string `json:"type"`
 	Message       string `json:"message"`
 }
 
+// Err
 type Err struct {
 	Name string
 }
@@ -33,7 +36,7 @@ func (e *Err) Error() string {
 	return e.Name
 }
 
-// Return panic when error != nil
+// Check return panic when error != nil
 func Check(e error, m string) {
 	if e != nil {
 		if m == "" {
@@ -44,6 +47,7 @@ func Check(e error, m string) {
 	}
 }
 
+// CatchPanic
 func CatchPanic(err *error, functionName string) {
 	if r := recover(); r != nil {
 		fmt.Printf("%s : PANIC Defered : %v\n", functionName, r)

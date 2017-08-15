@@ -5,7 +5,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// service
+// config
 package config
 
 import (
@@ -133,7 +133,7 @@ askLocallyAndCentralizedAgain:
 		config.Databasecentralized.Database, _ = database.ReadString('\n')
 		config.Databasecentralized.Database = strings.Trim(config.Databasecentralized.Database, "\n")
 
-		err, field := IsNotEmpty(
+		field, err := IsNotEmpty(
 			&config,
 			[]string{
 				"Databasecentralized",
@@ -193,7 +193,7 @@ askLocallyAndCentralizedAgain:
 		config.Databaselocal.Database, _ = database2.ReadString('\n')
 		config.Databaselocal.Database = strings.Trim(config.Databaselocal.Database, "\n")
 
-		err, field := IsNotEmpty(
+		field, err := IsNotEmpty(
 			&config,
 			[]string{
 				"Databaselocal",
@@ -223,7 +223,7 @@ askLocallyAndCentralizedAgain:
 			}
 		}
 	}
-	errCentralized, _ := IsNotEmpty(
+	_, errCentralized := IsNotEmpty(
 		&config,
 		[]string{
 			"Databasecentralized",
@@ -238,7 +238,7 @@ askLocallyAndCentralizedAgain:
 			}
 		},
 	)
-	errLocally, _ := IsNotEmpty(
+	_ , errLocally := IsNotEmpty(
 		&config,
 		[]string{
 			"Databaselocal",
@@ -325,11 +325,11 @@ func IsDirectoryExists(path string) bool {
 }
 
 // IsNotEmpty using the closure MustBeNotEmpty for check if exist the data on the struct Config
-func IsNotEmpty(config *model.Config, Item []string, subItem func() map[string][]string) (error, string) {
+func IsNotEmpty(config *model.Config, Item []string, subItem func() map[string][]string) (string, error) {
 	field, err := MustBeNotEmpty(config, func() []string {
 		return Item
 	}, subItem)
-	return err, field
+	return field, err
 }
 
 // MustBeNotEmpty check the values the map passed
