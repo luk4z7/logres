@@ -50,6 +50,7 @@ func session(connection string) (configData model.Config, localhost *mgo.Session
 	return configData, localhost, production
 }
 
+// GetSession return the mgo.Collection for any operations on database mongodb
 func GetSession(connection string, collection string) *mgo.Collection {
 	coll := &mgo.Collection{}
 	if len(os.Args) > 1 && os.Args[1] == "--run" {

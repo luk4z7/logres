@@ -15,11 +15,12 @@ import (
 )
 
 var (
-	INFO     *log.Logger
-	WARNING  *log.Logger
-	CRITICAL *log.Logger
+	INFO     *log.Logger // Green log
+	WARNING  *log.Logger // yellow log
+	CRITICAL *log.Logger // red log
 )
 
+// Start initiate the instances of gocolorize
 func Start() {
 	info := gocolorize.NewColor("green")
 	warning := gocolorize.NewColor("yellow")
