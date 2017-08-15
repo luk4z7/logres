@@ -15,11 +15,11 @@ import (
 )
 
 var (
-	// Green log
+	// INFO const return Green log
 	INFO     *log.Logger
-	// yellow log
+	// WARNING const return yellow log
 	WARNING  *log.Logger
-	// red log
+	// CRITICAL const return red log
 	CRITICAL *log.Logger
 )
 

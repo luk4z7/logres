@@ -16,9 +16,9 @@ import (
 )
 
 const (
-	// const for operations on production servers
+	// PRODUCTION const for operations on production servers
 	PRODUCTION = "production"
-	// const for operations on locally servers
+	// LOCALHOST const for operations on locally servers
 	LOCALHOST  = "localhost"
 )
 
