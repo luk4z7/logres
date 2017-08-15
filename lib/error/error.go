@@ -13,21 +13,21 @@ import (
 	"runtime"
 )
 
-// ErrorsAPI
+// ErrorsAPI struct for return errors of the API
 type ErrorsAPI struct {
 	Errors []Errors `json:"errors"`
 	Url    string   `json:"url"`
 	Method string   `json:"method"`
 }
 
-// Errors
+// Errors relationship on ErrorsAPI
 type Errors struct {
 	ParameterName string `json:"parameter_name"`
 	Type          string `json:"type"`
 	Message       string `json:"message"`
 }
 
-// Err
+// Err used for return string error
 type Err struct {
 	Name string
 }
@@ -47,7 +47,7 @@ func Check(e error, m string) {
 	}
 }
 
-// CatchPanic
+// CatchPanic catch the error panic and pretty print
 func CatchPanic(err *error, functionName string) {
 	if r := recover(); r != nil {
 		fmt.Printf("%s : PANIC Defered : %v\n", functionName, r)
