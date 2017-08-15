@@ -163,11 +163,6 @@ func readLines(filename string) {
 			seek = pos
 			break
 		}
-		if err == nil || err == io.EOF {
-			if len(data) > 0 && data[len(data)-1] == '\n' || len(data) > 0 && data[len(data)-1] == '\r' {
-				data = data[:len(data)-1]
-			}
-		}
 		r := csv.NewReader(strings.NewReader(line))
 		structure := model.LoggerPostgreSQL{}
 		_ = config.Unmarshal(r, &structure)
