@@ -5,7 +5,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// mongo
+// Package mongo provide drive for connections on mongo client and production
 package mongo
 
 import (
