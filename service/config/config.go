@@ -30,11 +30,12 @@ const (
 	fileConfig = ".logres.yaml"
 )
 
+// GetOS return the operating system in use
 func GetOS() string {
 	return runtime.GOOS
 }
 
-// Only darwin and linux are running the configuration
+// GetPathConfigFile only darwin and linux are running the configuration
 func GetPathConfigFile() string {
 	var file string
 	switch GetOS() {
@@ -46,7 +47,7 @@ func GetPathConfigFile() string {
 	return file
 }
 
-// Using lib yaml.v2 for read the yaml file
+// GetConfig using lib yaml.v2 for read the yaml file
 // to get the configuration of hosts and return struct Config{}
 func GetConfig() model.Config {
 	_, err := CheckConfig()
@@ -70,7 +71,7 @@ func GetConfig() model.Config {
 	return configData
 }
 
-// Check if exists the config file
+// CheckConfig check if exists the config file
 func CheckConfig() (*os.File, error) {
 	file := GetPathConfigFile()
 	openFile, err := os.OpenFile(file, os.O_RDONLY, 0600)
@@ -80,7 +81,7 @@ func CheckConfig() (*os.File, error) {
 	return openFile, err
 }
 
-// Create config file and put the byte data
+// CreateFileConfig create config file and put the byte data
 func CreateFileConfig(data []byte) error {
 	file := GetPathConfigFile()
 	newFile, err := os.Create(file)
@@ -97,7 +98,7 @@ func CreateFileConfig(data []byte) error {
 	return nil
 }
 
-// Generates the configuration file from some questions that are answered by the user
+// GenerateConfig generates the configuration file from some questions that are answered by the user
 func GenerateConfig() {
 	config := model.Config{}
 
@@ -315,6 +316,7 @@ askPathLog:
 	fmt.Println("File configured!")
 }
 
+// IsDirectoryExists verify is directory exists
 func IsDirectoryExists(path string) bool {
 	if _, err := os.Stat(strings.Trim(path, "\n")); os.IsNotExist(err) {
 		return false
@@ -322,6 +324,7 @@ func IsDirectoryExists(path string) bool {
 	return true
 }
 
+// IsNotEmpty using the closure MustBeNotEmpty for check if exist the data on the struct Config
 func IsNotEmpty(config *model.Config, Item []string, subItem func() map[string][]string) (error, string) {
 	field, err := MustBeNotEmpty(config, func() []string {
 		return Item
@@ -329,7 +332,7 @@ func IsNotEmpty(config *model.Config, Item []string, subItem func() map[string][
 	return err, field
 }
 
-// Check the values the map passed
+// MustBeNotEmpty check the values the map passed
 func MustBeNotEmpty(v interface{}, require func() []string, sub func() map[string][]string) (string, error) {
 	required := require()
 	subitems := sub()
@@ -356,6 +359,7 @@ func MustBeNotEmpty(v interface{}, require func() []string, sub func() map[strin
 	return "", nil
 }
 
+// FieldMismatch
 type FieldMismatch struct {
 	expected, found int
 }
@@ -364,6 +368,7 @@ func (e *FieldMismatch) Error() string {
 	return "CSV line fields mismatch. Expected " + strconv.Itoa(e.expected) + " found " + strconv.Itoa(e.found)
 }
 
+// UnsupportedType
 type UnsupportedType struct {
 	Type string
 }
@@ -372,6 +377,7 @@ func (e *UnsupportedType) Error() string {
 	return "Unsupported type: " + e.Type
 }
 
+// Unmarshal check data on the csv string
 func Unmarshal(reader *csv.Reader, v interface{}) error {
 	record, err := reader.Read()
 	if err != nil {
