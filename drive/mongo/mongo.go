@@ -11,7 +11,6 @@ package mongo
 import (
 	"gopkg.in/mgo.v2"
 	"os"
-	"fmt"
 	"github.com/luk4z7/logres/service/config"
 	"github.com/luk4z7/logres/service/model"
 )
@@ -27,7 +26,7 @@ func New() (*mgo.Collection, *mgo.Collection) {
 
 func session(connection string) (configData model.Config, localhost *mgo.Session, production *mgo.Session) {
 	configData = config.GetConfig()
-	if os.Args[1] == "--run" {
+	if len(os.Args) > 1 && os.Args[1] == "--run" {
 		if configData.Databaselocal.Host != "" && connection == LOCALHOST {
 			localhost, _ = mgo.DialWithInfo(&mgo.DialInfo{
 				Addrs:    []string{configData.Databaselocal.Host},
@@ -51,8 +50,7 @@ func session(connection string) (configData model.Config, localhost *mgo.Session
 
 func GetSession(connection string, collection string) *mgo.Collection {
 	coll :=  &mgo.Collection{}
-	fmt.Println(connection)
-	if os.Args[1] == "--run" {
+	if len(os.Args) > 1 && os.Args[1] == "--run" {
 		configData, localhost, production := session(connection)
 
 		if connection == LOCALHOST && configData.Databaselocal.Host != "" {
