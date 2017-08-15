@@ -5,7 +5,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// service
+// Package logger is a layer with methods for persistence and operations with data
 package logger
 
 import (

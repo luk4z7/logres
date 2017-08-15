@@ -5,9 +5,10 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// service
+// Package model is a layer with struct for data model
 package model
 
+// Config is are a struct with layout for configuration of databases access
 type Config struct {
 	Databasecentralized struct {
 		Host     string `yaml:"host"`

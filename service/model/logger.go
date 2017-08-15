@@ -5,11 +5,12 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-// service
+// Package model is a layer with struct for data model
 package model
 
 import "gopkg.in/mgo.v2/bson"
 
+// LoggerPostgreSQL is are a struct of the same log postgresql exported
 type LoggerPostgreSQL struct {
 	LogTime              string        `bson:"log_time"`
 	UserName             string        `bson:"user_name"`
