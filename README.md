@@ -1,5 +1,7 @@
 # Distributed logs system PostgresSQL to MongoDB
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/luk4z7/logres)](https://goreportcard.com/report/github.com/luk4z7/logres)
+
 ### Installation
 
 ```bash
