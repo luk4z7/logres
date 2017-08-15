@@ -14,6 +14,7 @@ import (
 	"gopkg.in/mgo.v2/bson"
 )
 
+// Persist provide the insert on mongo client/production
 func Persist(session *mgo.Collection, register model.LoggerPostgreSQL) error {
 	if err := session.Insert(register); err != nil {
 		return err
@@ -21,6 +22,7 @@ func Persist(session *mgo.Collection, register model.LoggerPostgreSQL) error {
 	return nil
 }
 
+// DeletePerObjectId provide the delete of objects per ObjectId on mongo client/production
 func DeletePerObjectId(session *mgo.Collection, id bson.ObjectId) error {
 	if err := session.Remove(bson.M{"_id": id}); err != nil {
 		return err
@@ -28,6 +30,7 @@ func DeletePerObjectId(session *mgo.Collection, id bson.ObjectId) error {
 	return nil
 }
 
+// GetAll provide the query of all data on database on mongo client/production
 func GetAll(session *mgo.Collection) ([]model.LoggerPostgreSQL, error) {
 	result := []model.LoggerPostgreSQL{}
 	err := session.Find(nil).All(&result)
