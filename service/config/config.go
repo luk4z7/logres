@@ -238,7 +238,7 @@ askLocallyAndCentralizedAgain:
 			}
 		},
 	)
-	_ , errLocally := IsNotEmpty(
+	_, errLocally := IsNotEmpty(
 		&config,
 		[]string{
 			"Databaselocal",

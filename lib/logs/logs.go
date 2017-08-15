@@ -16,9 +16,9 @@ import (
 
 var (
 	// INFO const return Green log
-	INFO     *log.Logger
+	INFO *log.Logger
 	// WARNING const return yellow log
-	WARNING  *log.Logger
+	WARNING *log.Logger
 	// CRITICAL const return red log
 	CRITICAL *log.Logger
 )

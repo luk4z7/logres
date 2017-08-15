@@ -19,7 +19,7 @@ const (
 	// PRODUCTION const for operations on production servers
 	PRODUCTION = "production"
 	// LOCALHOST const for operations on locally servers
-	LOCALHOST  = "localhost"
+	LOCALHOST = "localhost"
 )
 
 // New return two instances of different connections
