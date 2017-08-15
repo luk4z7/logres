@@ -15,9 +15,12 @@ import (
 )
 
 var (
-	INFO     *log.Logger // Green log
-	WARNING  *log.Logger // yellow log
-	CRITICAL *log.Logger // red log
+	// Green log
+	INFO     *log.Logger
+	// yellow log
+	WARNING  *log.Logger
+	// red log
+	CRITICAL *log.Logger
 )
 
 // Start initiate the instances of gocolorize

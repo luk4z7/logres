@@ -335,10 +335,12 @@ func (s *Store) sync() {
 	}
 }
 
+// SetFile set a file for struct Store
 func (s *Store) SetFile(file string) {
 	s.File = file
 }
 
+// getFile get a file of struct Store
 func (s *Store) getFile() string {
 	return s.File
 }

@@ -359,7 +359,7 @@ func MustBeNotEmpty(v interface{}, require func() []string, sub func() map[strin
 	return "", nil
 }
 
-// FieldMismatch
+// FieldMismatch struct used on func Unmarshal
 type FieldMismatch struct {
 	expected, found int
 }
@@ -368,7 +368,7 @@ func (e *FieldMismatch) Error() string {
 	return "CSV line fields mismatch. Expected " + strconv.Itoa(e.expected) + " found " + strconv.Itoa(e.found)
 }
 
-// UnsupportedType
+// UnsupportedType return field string
 type UnsupportedType struct {
 	Type string
 }

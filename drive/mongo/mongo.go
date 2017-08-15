@@ -16,8 +16,10 @@ import (
 )
 
 const (
-	PRODUCTION = "production" // const for operations on production servers
-	LOCALHOST  = "localhost"  // const for operations on locally servers
+	// const for operations on production servers
+	PRODUCTION = "production"
+	// const for operations on locally servers
+	LOCALHOST  = "localhost"
 )
 
 // New return two instances of different connections
