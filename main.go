@@ -8,38 +8,38 @@
 package main
 
 import (
-	"io"
-	"os"
-	"log"
-	"fmt"
 	"bufio"
-	"path/filepath"
-	"runtime"
-	"encoding/csv"
-	"strings"
-	"time"
-	"sync"
 	"bytes"
-	"io/ioutil"
+	"encoding/csv"
+	"fmt"
 	"github.com/fsnotify/fsnotify"
+	"github.com/luk4z7/logres/drive/mongo"
 	"github.com/luk4z7/logres/lib/logs"
 	"github.com/luk4z7/logres/lib/standard"
-	"github.com/luk4z7/logres/service/logger"
-	"github.com/luk4z7/logres/drive/mongo"
-	"github.com/luk4z7/logres/service/model"
 	"github.com/luk4z7/logres/service/config"
+	"github.com/luk4z7/logres/service/logger"
+	"github.com/luk4z7/logres/service/model"
+	"io"
+	"io/ioutil"
+	"log"
+	"os"
+	"path/filepath"
+	"runtime"
+	"strings"
+	"sync"
+	"time"
 )
 
 var (
 	workers     = runtime.NumCPU()
 	local, prod = mongo.New()
-	store 	    = Store{}
-	seek          int64
-	filename      string
+	store       = Store{}
+	seek        int64
+	filename    string
 )
 
 type Store struct {
-	File 		string
+	File        string
 	Transaction []string
 	sync.Mutex
 }
@@ -164,10 +164,7 @@ func readLines(filename string) {
 			break
 		}
 		if err == nil || err == io.EOF {
-			if len(data) > 0 && data[len(data)-1] == '\n' {
-				data = data[:len(data)-1]
-			}
-			if len(data) > 0 && data[len(data)-1] == '\r' {
+			if len(data) > 0 && data[len(data)-1] == '\n' || len(data) > 0 && data[len(data)-1] == '\r' {
 				data = data[:len(data)-1]
 			}
 		}
@@ -283,26 +280,26 @@ func (s *Store) getLines() int {
 
 // Push the data of the mongodb client for the mongodb server
 // every 15 minutes
-func (s Store) push() {
+func (s *Store) push() {
 	for {
 		select {
-		case <-time.After(time.Second*15):
+		case <-time.After(time.Second * 15):
 			logs.INFO.Println("Initiating push....")
 			go s.sync()
 		}
 	}
 }
 
-// Every 15 minutes this method is executed for syncronization
+// Every 15 minutes this method is executed for synchronization
 // between the client and server.
 // Verifies that there are records in the client database, iterate it and
-// push for datatabase centralized.
+// push for database centralized.
 // At the same time removes data from the mongodb client.
 // When the variable "total" is equal zero the method removeLines()
 // is activated for clearing of the log file, also store.Transaction
 // is set with value null because the file is clean and the
 // store.Transaction it should be like this too.
-func (s Store) sync() {
+func (s *Store) sync() {
 	result, err := logger.GetAll(local)
 	if err != nil {
 		logs.CRITICAL.Println("Panic for get all objects")
