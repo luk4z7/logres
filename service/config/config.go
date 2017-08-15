@@ -49,6 +49,10 @@ func GetPathConfigFile() string {
 // Using lib yaml.v2 for read the yaml file
 // to get the configuration of hosts and return struct Config{}
 func GetConfig() model.Config {
+	_, err := CheckConfig()
+	if err != nil {
+		os.Exit(1)
+	}
 	file := GetPathConfigFile()
 	configData := model.Config{}
 	openFile, err := os.OpenFile(file, os.O_RDONLY,0600)
