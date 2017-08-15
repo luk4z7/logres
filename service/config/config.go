@@ -9,21 +9,21 @@
 package config
 
 import (
-	"runtime"
-	"os"
-	"io/ioutil"
-	"gopkg.in/yaml.v2"
-	"fmt"
 	"bufio"
-	"strings"
-	"log"
-	"strconv"
 	"encoding/csv"
-	"reflect"
-	"github.com/luk4z7/logres/service/model"
+	"fmt"
 	"github.com/fatih/structs"
 	liberr "github.com/luk4z7/logres/lib/error"
 	"github.com/luk4z7/logres/lib/standard"
+	"github.com/luk4z7/logres/service/model"
+	"gopkg.in/yaml.v2"
+	"io/ioutil"
+	"log"
+	"os"
+	"reflect"
+	"runtime"
+	"strconv"
+	"strings"
 )
 
 const (
@@ -55,7 +55,7 @@ func GetConfig() model.Config {
 	}
 	file := GetPathConfigFile()
 	configData := model.Config{}
-	openFile, err := os.OpenFile(file, os.O_RDONLY,0600)
+	openFile, err := os.OpenFile(file, os.O_RDONLY, 0600)
 	if err != nil {
 		panic(err)
 	}
@@ -73,7 +73,7 @@ func GetConfig() model.Config {
 // Check if exists the config file
 func CheckConfig() (*os.File, error) {
 	file := GetPathConfigFile()
-	openFile, err := os.OpenFile(file, os.O_RDONLY,0600)
+	openFile, err := os.OpenFile(file, os.O_RDONLY, 0600)
 	if err != nil {
 		fmt.Println("Unable to locate configure. You can configure by running \"logres --config\"")
 	}
@@ -258,9 +258,8 @@ askLocallyAndCentralizedAgain:
 		locallyAndCentralizedEmptyAnswer, _ := readerLocallyAndCentralized.ReadString('\n')
 		locallyAndCentralizedEmptyAnswer = strings.Trim(locallyAndCentralizedEmptyAnswer, "\n")
 
-		if locallyAndCentralizedEmptyAnswer != "" && (
-			locallyAndCentralizedEmptyAnswer == "y" ||
-				locallyAndCentralizedEmptyAnswer == "Y") {
+		if locallyAndCentralizedEmptyAnswer != "" && (locallyAndCentralizedEmptyAnswer == "y" ||
+			locallyAndCentralizedEmptyAnswer == "Y") {
 			goto askLocallyAndCentralizedAgain
 		}
 	}
@@ -294,7 +293,7 @@ askPathLog:
 		config.Databaselocal.Host == "" &&
 		config.Databaselocal.Username == "" &&
 		config.Databaselocal.Database == "" &&
-		config.Databaselocal.Password  == "" &&
+		config.Databaselocal.Password == "" &&
 		config.Databasecentralized.Host == "" &&
 		config.Databasecentralized.Username == "" &&
 		config.Databasecentralized.Database == "" &&
@@ -340,7 +339,7 @@ func MustBeNotEmpty(v interface{}, require func() []string, sub func() map[strin
 		name := s.Field(v)
 		for key, values := range subitems {
 			if key == v {
-				for i:=0; i < len(values); i++ {
+				for i := 0; i < len(values); i++ {
 					if name.Field(values[i]).Value() == "" {
 						return values[i], &liberr.Err{Name: values[i] + " - Parametro incorreto"}
 					}
@@ -349,7 +348,7 @@ func MustBeNotEmpty(v interface{}, require func() []string, sub func() map[strin
 		}
 		if name.Kind() == reflect.String {
 			value := name.Value().(string)
-			if !standard.IsAlpha(value) || value == ""{
+			if !standard.IsAlpha(value) || value == "" {
 				return v, &liberr.Err{Name: v + " - Parametro incorreto"}
 			}
 		}

@@ -9,10 +9,10 @@
 package mongo
 
 import (
-	"gopkg.in/mgo.v2"
-	"os"
 	"github.com/luk4z7/logres/service/config"
 	"github.com/luk4z7/logres/service/model"
+	"gopkg.in/mgo.v2"
+	"os"
 )
 
 const (
@@ -49,7 +49,7 @@ func session(connection string) (configData model.Config, localhost *mgo.Session
 }
 
 func GetSession(connection string, collection string) *mgo.Collection {
-	coll :=  &mgo.Collection{}
+	coll := &mgo.Collection{}
 	if len(os.Args) > 1 && os.Args[1] == "--run" {
 		configData, localhost, production := session(connection)
 

@@ -22,9 +22,9 @@ type Config struct {
 		Database string `yaml:"database"`
 	}
 	Client struct {
-		Name     string `yaml:"name"`
+		Name string `yaml:"name"`
 	}
 	Pathlog struct {
-		Name     string `yaml:"name"`
+		Name string `yaml:"name"`
 	}
 }
