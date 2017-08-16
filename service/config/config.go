@@ -30,6 +30,11 @@ const (
 	fileConfig = ".logres.yaml"
 )
 
+var (
+	// Client provide the name of server executing
+	Client string = ""
+)
+
 // GetOS return the operating system in use
 func GetOS() string {
 	return runtime.GOOS

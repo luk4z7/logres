@@ -101,7 +101,10 @@ func run() {
 // link: https://github.com/fsnotify/fsnotify (File System Notifications to Go)
 // a listener is created for a specific directory when a file is modified
 // is triggered the method readLines()
-func watcher(config model.Config) {
+func watcher(configModel model.Config) {
+	// Set the client variable
+	config.Client = configModel.Client.Name
+
 	watcher, err := fsnotify.NewWatcher()
 	if err != nil {
 		log.Fatal(err)
@@ -132,7 +135,7 @@ func watcher(config model.Config) {
 			}
 		}
 	}()
-	err = watcher.Add(config.Pathlog.Name)
+	err = watcher.Add(configModel.Pathlog.Name)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -173,6 +176,8 @@ func readLines(filename string) {
 				structure.UserName + " :: DataBase: " +
 				structure.DatabaseName + " :: VirtualTransactionID: " +
 				structure.VirtualTransactionID)
+
+			structure.Client = config.Client
 			err = logger.Persist(local, structure)
 			if err != nil {
 				logs.CRITICAL.Println("Failed to persist structure in the mongodb client -> ", err)
