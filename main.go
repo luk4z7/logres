@@ -320,16 +320,13 @@ func (s *Store) sync() {
 		return
 	}
 	for i := 0; i < total; i++ {
-		exists, _ := standard.InArray(result[i].VirtualTransactionID, store.Transaction)
-		if !exists {
-			logs.INFO.Println("PUSH -> UserName: " +
-				result[i].UserName + " :: DataBase: " +
-				result[i].DatabaseName + " :: VirtualTransactionID: " +
-				result[i].VirtualTransactionID)
+		logs.INFO.Println("PUSH -> UserName: " +
+			result[i].UserName + " :: DataBase: " +
+			result[i].DatabaseName + " :: VirtualTransactionID: " +
+			result[i].VirtualTransactionID)
 
-			store.Transaction = append(store.Transaction, result[i].VirtualTransactionID)
-			logger.Persist(prod, result[i])
-		}
+		store.Transaction = append(store.Transaction, result[i].VirtualTransactionID)
+		logger.Persist(prod, result[i])
 		// Depending on the amount of data and traffic, goroutines that were
 		// first run have already removed the registry, not identifying the
 		// registry in the database at the current execution.
