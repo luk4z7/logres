@@ -15,7 +15,6 @@ import (
 	"github.com/fsnotify/fsnotify"
 	"github.com/luk4z7/logres/drive/mongo"
 	"github.com/luk4z7/logres/lib/logs"
-	"github.com/luk4z7/logres/lib/standard"
 	"github.com/luk4z7/logres/service/config"
 	"github.com/luk4z7/logres/service/logger"
 	"github.com/luk4z7/logres/service/model"
